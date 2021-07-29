@@ -1,0 +1,41 @@
+Basaraba Razvan - 324CC
+
+    Implementarea temei contine in mare parte laboratorul 10, constructia
+cererilor pentru server fiind similara cu cea din lab. Clientul acceptă
+comenzi de la tastatură şi trimite, în funcţie de comandă, cereri către server.
+1. register
+    Oferim prompt pentru username si parola (datele cu care vrea utilizatorul
+sa se inregistreze) si formam paylodul (json). Completam structura interna
+post_req. Creeam request-ul cu ajutorul functiei compute_post_request (luata
+din laborator 10) si il trimitem serverului. De la server primim un raspuns
+in care al doilea cuvant il reprezinta codul de succes/eroare. Daca nu s-a
+reusit inregistrarea insemna ca am primit un json care contine eroarea, il
+extragem cu ajutorul functiei basic_extract_json_response si afisam doar mesajul.
+2. login
+    Asemanator cu register. Atunci cand se reuseste conectare se pastreaza
+coookie-ul de sesiune sau mesaj de eroare in caz contrar.
+3. enter_library
+    Completam structura interna get_request. Creem requestul cu ajutor functiei
+compute_get_request (luata din laborator 10) il trimitem serverului si procedam
+la fel ca mai sus. Daca s-a obtinut accesul la biblioteca salvam tokenJwt-ul
+(care se afla in raspuns).
+4. get_books
+     Completam structura interna get_request. Creem requestul cu ajutor functiei
+compute_get_requestJWT(asemanatoare cu functia compute_get_request doar ca adaugam
+headerul Authorization si prefixul Bearer).
+5. get_book
+    Oferim prompt pemntru id si formam url-ul. Apoi procedam asemanator ca mai sus.
+6. add_book
+    Oferim prompt pentru titulu, autor, etc si formam paylodul(tip json). Completam
+structura interna post_request si creem requestul care va fi trimis serverului cu 
+ajutorul functiei compute_jwt_request (foarte asemanatoare cu functia din laborator 
+compute_post_request doar ca trimitem tokenulJwt sau NULL daca nu exista pentru a
+demonstar accesul la biblioteca si tipul acesteia?: POST/DELETE).
+7. delete_book
+    Asemanator cu add_book.
+8. logout
+    Completam structura get_request si creem mesajul care va fi trimis serverului cu
+ajutorul functiei compute_get_request. Daca s-a primit de la server un mesaj de
+confirmare atunci ne reintializam variabilel locale de tokenJWT si cookie.
+9. exit
+    Oprim conexiunea si citirea de la tastatura.
